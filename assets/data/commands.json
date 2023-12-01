@@ -1,0 +1,6 @@
+[
+    {
+        "command": "/addigonredusers", 
+        "description": "Добавить игнорированных пользователей"
+    }
+]

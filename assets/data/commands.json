@@ -2,5 +2,9 @@
     {
         "command": "/addigonredusers", 
         "description": "Добавить игнорированных пользователей"
+    },    
+    {
+        "command": "/addgrouptext", 
+        "description": "Добавить конкретный текст для группы"
     }
 ]

@@ -3,12 +3,68 @@
 		"id": 1454688178,
 		"nick": "HesoyamiJs",
 		"name": "Heso",
-		"heAcceptedAgreement": true
+		"heAcceptedAgreement": false
 	},
 	{
 		"id": 5015947677,
 		"nick": "Vladimir003",
 		"name": "Владимир",
 		"heAcceptedAgreement": true
+	},
+	{
+		"id": 6304658345,
+		"name": "Карина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6472615905,
+		"nick": "Velari61254",
+		"name": "Velari",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 995888851,
+		"name": "Злата",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6407543253,
+		"nick": "mashaniko3009",
+		"name": "Мария",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6626959619,
+		"name": "Таня",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 1612244201,
+		"nick": "ser12301",
+		"name": "N888",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5034421416,
+		"nick": "hjgjhjkjlk77676",
+		"name": "Ева",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5012278111,
+		"nick": "flecownnd",
+		"name": "Николай Андреев",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6440593322,
+		"nick": "dimsas999",
+		"name": "Дмитрий",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 1296068552,
+		"name": "Эмма",
+		"heAcceptedAgreement": false
 	}
 ]

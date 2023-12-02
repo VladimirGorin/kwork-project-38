@@ -25,6 +25,30 @@ function saveIgnoredUsers(msg, bot) {
   );
 }
 
+function saveNewGroupText(msg, bot) {
+  const chatId = msg.chat.id;
+  const groupsData = JSON.parse(fs.readFileSync("./assets/data/groups.json"));
+  const messageText = msg.text;
+
+  if (messageText.includes(',')) {
+    const [groupId, text] = messageText.split(',').map(part => part.trim());
+    const formattedText = text.replace(/(\r\n|\r|\n)/g, '\n');
+
+    groupsData.push({id: groupId, text: formattedText})
+
+    fs.writeFileSync(
+      "./assets/data/groups.json",
+      JSON.stringify(groupsData, null, "\t")
+    );
+
+    bot.sendMessage(chatId, `Сообщение для группы ${groupId} успешно установлено`);
+  } else {
+    bot.sendMessage(chatId, "Сообщение должно содержать запятую. Пример: groupId, текст");
+  }
+}
+
+
 module.exports = {
-  saveIgnoredUsers
+  saveIgnoredUsers,
+  saveNewGroupText
 };

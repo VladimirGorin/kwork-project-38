@@ -4,7 +4,10 @@ const bot = new TelegramBotApi(process.env.TOKEN, { polling: true });
 const fs = require("fs");
 
 const users = require("./assets/data/users.json");
-const { saveIgnoredUsers, saveNewGroupText } = require("./assets/modules/utils");
+const {
+  saveIgnoredUsers,
+  saveNewGroupText,
+} = require("./assets/modules/utils");
 const commands = JSON.parse(fs.readFileSync("./assets/data/commands.json"));
 
 bot.setMyCommands(commands);
@@ -19,12 +22,14 @@ const handleAddGroupTextMessageSend = (msg) => {
   bot.removeListener("message", handleAddGroupTextMessageSend);
 };
 
+
 bot.on("message", (msg) => {
   const command = msg.text;
   const chatId = msg.chat.id;
   const { type } = msg.chat;
   const { message_id } = msg;
 
+  
   var user = users.filter((x) => x.id === msg.from.id)[0];
 
   if (!user) {
@@ -42,10 +47,12 @@ bot.on("message", (msg) => {
     );
   }
 
+  console.log(user)
+
   switch (command) {
     case "/addigonredusers":
       if (user?.id === Number(process.env.ADMIN_CHAT_ID)) {
-        const addIgonredUsersText = `Отправьте список chatId пользователей которых вы хотите добавить в игнор\n\nПример: 1454688178, 1454688178, 1454688178`;
+        const addIgonredUsersText = `Отправьте список chatId пользователей или username пользователей которых вы хотите добавить в игнор\n\nПример: 1454688178, Vladimir003, 1454688178`;
         bot.sendMessage(chatId, addIgonredUsersText);
         bot.on("message", handleAddIgnoredUsersMessageSend);
       } else {
@@ -53,7 +60,7 @@ bot.on("message", (msg) => {
       }
 
       break;
-      
+
     case "/addgrouptext":
       if (user?.id === Number(process.env.ADMIN_CHAT_ID)) {
         const addGroupTextMessage = `Отправьте мне groupId (его можно получить из группы, предварительно добавив туда бота @GetMyChatID_Bot), и текст в обычном формате.\n\nПример:\ngroupid, текст\nтекст`;
@@ -67,58 +74,60 @@ bot.on("message", (msg) => {
 
     default:
       if (type === "group" || type === "supergroup") {
-        if (!user.heAcceptedAgreement) {
-          const groups = JSON.parse(
-            fs.readFileSync("./assets/data/groups.json")
-          );
+        if (user.id !== Number(process.env.ADMIN_CHAT_ID) && user.nick !== "GroupAnonymousBot") {
+          if (!user.heAcceptedAgreement) {
+            const groups = JSON.parse(
+              fs.readFileSync("./assets/data/groups.json")
+            );
 
-          const group = groups?.find((g) => Number(g.id) === chatId);
+            const group = groups?.find((g) => Number(g.id) === chatId);
 
-          if (group) {
-            bot.deleteMessage(chatId, message_id);
-            bot
-            .sendMessage(chatId, group?.text, {
-              reply_markup: JSON.stringify({
-                inline_keyboard: [
-                  [{ text: "Не коммерческое", callback_data: `nonProfit` }],
-                  [
-                    {
-                      text: "Админ",
-                      callback_data: `admin`,
-                      url: process.env.ADMIN_URL,
-                    },
-                  ],
-                ],
-              }),
-            })
-            .then(({ message_id }) => {
-              setTimeout(() => {
-                bot.deleteMessage(chatId, message_id);
-              }, 120000);
-            });
-          } else {
-            const textForUser = `Здравствуйте @${user?.nick}, если у Вас не коммерческое объявление нажмите кнопку «Не коммерческое» и опубликуйте повторно.\n\nЕсли у Вас коммерческое объявление нажмите кнопку Админ\n\n❗️❗️❗️Если Вы опубликуете коммерческое объявление не согласовав с Администратором группы, получите вечный БАН`;
-            bot.deleteMessage(chatId, message_id);
-            bot
-              .sendMessage(chatId, textForUser, {
-                reply_markup: JSON.stringify({
-                  inline_keyboard: [
-                    [{ text: "Не коммерческое", callback_data: `nonProfit` }],
-                    [
-                      {
-                        text: "Админ",
-                        callback_data: `admin`,
-                        url: process.env.ADMIN_URL,
-                      },
+            if (group) {
+              bot.deleteMessage(chatId, message_id);
+              bot
+                .sendMessage(chatId, group?.text, {
+                  reply_markup: JSON.stringify({
+                    inline_keyboard: [
+                      [{ text: "Не коммерческое", callback_data: `nonProfit` }],
+                      [
+                        {
+                          text: "Админ",
+                          callback_data: `admin`,
+                          url: process.env.ADMIN_URL,
+                        },
+                      ],
                     ],
-                  ],
-                }),
-              })
-              .then(({ message_id }) => {
-                setTimeout(() => {
-                  bot.deleteMessage(chatId, message_id);
-                }, 120000);
-              });
+                  }),
+                })
+                .then(({ message_id }) => {
+                  setTimeout(() => {
+                    bot.deleteMessage(chatId, message_id);
+                  }, 120000);
+                });
+            } else {
+              const textForUser = `Здравствуйте @${user?.nick}, если у Вас не коммерческое объявление нажмите кнопку «Не коммерческое» и опубликуйте повторно.\n\nЕсли у Вас коммерческое объявление нажмите кнопку Админ\n\n❗️❗️❗️Если Вы опубликуете коммерческое объявление не согласовав с Администратором группы, получите вечный БАН`;
+              bot.deleteMessage(chatId, message_id);
+              bot
+                .sendMessage(chatId, textForUser, {
+                  reply_markup: JSON.stringify({
+                    inline_keyboard: [
+                      [{ text: "Не коммерческое", callback_data: `nonProfit` }],
+                      [
+                        {
+                          text: "Админ",
+                          callback_data: `admin`,
+                          url: process.env.ADMIN_URL,
+                        },
+                      ],
+                    ],
+                  }),
+                })
+                .then(({ message_id }) => {
+                  setTimeout(() => {
+                    bot.deleteMessage(chatId, message_id);
+                  }, 120000);
+                });
+            }
           }
         }
       }

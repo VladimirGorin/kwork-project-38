@@ -14,7 +14,7 @@
 	{
 		"id": 6304658345,
 		"name": "Карина",
-		"heAcceptedAgreement": false
+		"heAcceptedAgreement": true
 	},
 	{
 		"id": 6472615905,
@@ -65,6 +65,189 @@
 	{
 		"id": 1296068552,
 		"name": "Эмма",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 1087968824,
+		"nick": "GroupAnonymousBot",
+		"name": "Group",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6981480445,
+		"name": "София",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6980155050,
+		"name": "Андрей",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5096676372,
+		"nick": "Sodaeffect11",
+		"name": "здесь могла быть могла",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5118428287,
+		"nick": "na_ta_z",
+		"name": "Наталья",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6629554265,
+		"name": "Ульяна",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5742305388,
+		"name": "Никон",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6712774134,
+		"nick": "garikm47",
+		"name": "Игорь",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5850929316,
+		"nick": "alexei_Pavlow",
+		"name": "Алексей",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6563602533,
+		"name": "Тома",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6614595195,
+		"nick": "pirate_help",
+		"name": "SUPPORT",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6769534265,
+		"name": "Evan",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6440373126,
+		"nick": "maks_zarabot43",
+		"name": "Максим",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 869826293,
+		"nick": "Zheka2020TM",
+		"name": "Евгений Алексеевич",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6390385826,
+		"name": "Наталья",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5353438186,
+		"nick": "vvvkoas",
+		"name": "Вика",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6935214352,
+		"nick": "reklam119",
+		"name": "Аделина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6601082078,
+		"name": "Scott",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6739648623,
+		"nick": "RGRJSOPV",
+		"name": "GOKAAAA",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6218718147,
+		"name": "Ярослав",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6598694087,
+		"name": "Алина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 322398307,
+		"nick": "ShtifonovaIrina",
+		"name": "Ирина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6367851012,
+		"nick": "ivvvivvv",
+		"name": "Иван Работа",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5299154804,
+		"name": "Елена",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5507056551,
+		"nick": "mari_aktiv1",
+		"name": "Мария 🩷",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6673113879,
+		"nick": "pepepepc",
+		"name": "Ника",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5778871952,
+		"name": "Диана",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 614218468,
+		"nick": "schastye_zhit",
+		"name": "Наталья",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5813795827,
+		"name": "Мишель",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6903409891,
+		"name": "Элина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 448285419,
+		"nick": "YoungBrox",
+		"name": "Николай",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 5249851063,
+		"nick": "Iriska600",
+		"name": "Ирина",
+		"heAcceptedAgreement": false
+	},
+	{
+		"id": 6830520607,
+		"name": "Евгения",
 		"heAcceptedAgreement": false
 	}
 ]

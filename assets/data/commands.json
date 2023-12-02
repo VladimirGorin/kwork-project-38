@@ -6,5 +6,9 @@
     {
         "command": "/addgrouptext", 
         "description": "Добавить конкретный текст для группы"
+    },    
+    {
+        "command": "/stop", 
+        "description": "Остоновить"
     }
 ]

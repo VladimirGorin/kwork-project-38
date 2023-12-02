@@ -7,6 +7,7 @@ const users = require("./assets/data/users.json");
 const {
   saveIgnoredUsers,
   saveNewGroupText,
+  stopBot
 } = require("./assets/modules/utils");
 const commands = JSON.parse(fs.readFileSync("./assets/data/commands.json"));
 
@@ -47,7 +48,6 @@ bot.on("message", (msg) => {
     );
   }
 
-  console.log(user)
 
   switch (command) {
     case "/addigonredusers":
@@ -55,6 +55,15 @@ bot.on("message", (msg) => {
         const addIgonredUsersText = `Отправьте список chatId пользователей или username пользователей которых вы хотите добавить в игнор\n\nПример: 1454688178, Vladimir003, 1454688178`;
         bot.sendMessage(chatId, addIgonredUsersText);
         bot.on("message", handleAddIgnoredUsersMessageSend);
+      } else {
+        bot.sendMessage(chatId, "Вы не админ");
+      }
+
+      break;
+
+    case "/stop":
+      if (user?.id === Number(process.env.ADMIN_CHAT_ID)) {
+        stopBot()
       } else {
         bot.sendMessage(chatId, "Вы не админ");
       }

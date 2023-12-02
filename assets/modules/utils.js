@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { exec } = require('child_process');
 
 function saveIgnoredUsers(msg, bot) {
   const chatId = msg.chat.id;
@@ -16,9 +17,6 @@ function saveIgnoredUsers(msg, bot) {
       usernames.push(entry); 
     }
   });
-
-  console.log("User IDs:", userIds);
-  console.log("Usernames:", usernames);
 
   userIds.forEach(userId => {
     const user = usersData.find(u => u.id === userId);
@@ -71,7 +69,22 @@ function saveNewGroupText(msg, bot) {
 }
 
 
+function stopBot() {
+  console.log('Stopping the bot...');
+  
+  exec('pm2 stop 0', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error stopping the bot: ${error}`);
+      return;
+    }
+
+    console.log('Bot stopped successfully.', stdout);
+  });
+}
+
+
 module.exports = {
   saveIgnoredUsers,
-  saveNewGroupText
+  saveNewGroupText,
+  stopBot
 };

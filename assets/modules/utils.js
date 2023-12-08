@@ -1,30 +1,6 @@
 const fs = require("fs");
 const { exec } = require("child_process");
 
-function saveIgnoredUsers(msg, bot) {
-  const chatId = msg.chat.id;
-  const usersData = JSON.parse(fs.readFileSync("./assets/data/users.json"));
-  const text = msg.text;
-  const user = usersData.filter((x) => x.id === chatId)[0];
-
-  const entries = text.split(",").map((entry) => entry.trim());
-
-  entries.forEach((username) => {
-    user?.groups?.forEach((group) => group?.ignoredUsers?.push(username));
-
-    const statusMessage = user
-      ? `Пользователь ${username} найден, значение установлено`
-      : `Пользователь ${username}, не найден`;
-
-    bot.sendMessage(chatId, statusMessage);
-  });
-
-  fs.writeFileSync(
-    "./assets/data/users.json",
-    JSON.stringify(usersData, null, "\t")
-  );
-}
-
 function saveGroups(msg, bot) {
   const chatId = msg.chat.id;
   const users = JSON.parse(fs.readFileSync("./assets/data/users.json"));
@@ -54,6 +30,7 @@ function saveGroups(msg, bot) {
             groupName,
             ignoredUsers: [],
             firstText: null,
+            lastText: null,
             buttons: [],
           });
 
@@ -79,15 +56,61 @@ function saveGroups(msg, bot) {
   });
 }
 
-function saveNewGroupText(msg, bot) {
+function saveIgnoredUsers(msg, bot) {
   const chatId = msg.chat.id;
   const usersData = JSON.parse(fs.readFileSync("./assets/data/users.json"));
   const text = msg.text;
-
   const user = usersData.filter((x) => x.id === chatId)[0];
+  const selectedGroup = user?.selectedGroup;
+
+  if (!selectedGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена у пользователя");
+    return;
+  }
+  const findGroup = user?.groups?.find((g) => g.groupName === selectedGroup);
+  if (!findGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена в базе у пользователя");
+    return;
+  }
+
+  const entries = text.split(",").map((entry) => entry.trim());
+
+  entries.forEach((username) => {
+    findGroup?.ignoredUsers?.push(username);
+
+    const statusMessage = user
+      ? `Пользователь ${username} найден, значение установлено`
+      : `Пользователь ${username}, не найден`;
+
+    bot.sendMessage(chatId, statusMessage);
+  });
+
+  fs.writeFileSync(
+    "./assets/data/users.json",
+    JSON.stringify(usersData, null, "\t")
+  );
+}
+
+function saveNewGroupFirstText(msg, bot) {
+  const chatId = msg.chat.id;
+  const usersData = JSON.parse(fs.readFileSync("./assets/data/users.json"));
+  const text = msg.text;
+  const user = usersData.filter((x) => x.id === chatId)[0];
+  const selectedGroup = user?.selectedGroup;
+
+  if (!selectedGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена у пользователя");
+    return;
+  }
+
+  const findGroup = user?.groups?.find((g) => g.groupName === selectedGroup);
+  if (!findGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена в базе у пользователя");
+    return;
+  }
 
   const formattedText = text.replace(/(\r\n|\r|\n)/g, "\n");
-  user?.groups?.forEach((group) => (group.firstText = formattedText));
+  findGroup.firstText = formattedText;
 
   fs.writeFileSync(
     "./assets/data/users.json",
@@ -97,11 +120,52 @@ function saveNewGroupText(msg, bot) {
   bot.sendMessage(chatId, `Сообщение для группы успешно установлено`);
 }
 
+function saveNewGroupLastText(msg, bot) {
+  const chatId = msg.chat.id;
+  const usersData = JSON.parse(fs.readFileSync("./assets/data/users.json"));
+  const text = msg.text;
+  const user = usersData.filter((x) => x.id === chatId)[0];
+  const selectedGroup = user?.selectedGroup;
+
+  if (!selectedGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена у пользователя");
+    return;
+  }
+
+  const findGroup = user?.groups?.find((g) => g.groupName === selectedGroup);
+  if (!findGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена в базе у пользователя");
+    return;
+  }
+
+  const formattedText = text.replace(/(\r\n|\r|\n)/g, "\n");
+  findGroup.lastText = formattedText;
+
+  fs.writeFileSync(
+    "./assets/data/users.json",
+    JSON.stringify(usersData, null, "\t")
+  );
+
+  bot.sendMessage(chatId, `Сообщение для группы успешно установлено`);
+}
 
 function saveNewButtons(msg, bot) {
   const chatId = msg.chat.id;
   const usersData = JSON.parse(fs.readFileSync("./assets/data/users.json"));
   const text = msg.text;
+  const user = usersData.filter((x) => x.id === chatId)[0];
+  const selectedGroup = user?.selectedGroup;
+
+  if (!selectedGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена у пользователя");
+    return;
+  }
+
+  const findGroup = user?.groups?.find((g) => g.groupName === selectedGroup);
+  if (!findGroup) {
+    bot.sendMessage(chatId, "Ошибка! Группа не найдена в базе у пользователя");
+    return;
+  }
 
   const commaCount = (text.match(/,/g) || []).length;
   if (commaCount !== 2) {
@@ -109,19 +173,17 @@ function saveNewButtons(msg, bot) {
     return;
   }
 
-  const user = usersData.find((x) => x.id === chatId);
-
   const formattedText = text.replace(/(\r\n|\r|\n)/g, "\n");
 
-  const [button1, button2, link] = formattedText.split(",").map((part) => part.trim());
+  const [button1, button2, link] = formattedText
+    .split(",")
+    .map((part) => part.trim());
 
   const buttonData1 = { text: button1 };
   const buttonData2 = { text: button2, url: link };
 
-  user?.groups?.forEach((group) => {
-    group.firstText = formattedText;
-    group.buttons = [buttonData1, buttonData2];
-  });
+  findGroup.buttons = [buttonData1, buttonData2];
+
 
   fs.writeFileSync(
     "./assets/data/users.json",
@@ -253,7 +315,8 @@ function saveReceipt(msg, bot) {
 
 module.exports = {
   saveIgnoredUsers,
-  saveNewGroupText,
+  saveNewGroupFirstText,
+  saveNewGroupLastText,
   saveNewButtons,
   saveReceipt,
   stopBot,

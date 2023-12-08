@@ -1,56 +1,5 @@
 [
 	{
-		"id": 1454688178,
-		"nick": "HesoyamiJs",
-		"name": "Heso",
-		"heAcceptedAgreement": true,
-		"groups": [
-			{
-				"groupName": "uniquetemplatess_bot",
-				"ignoredUsers": [
-					"Пользователь1",
-					"Пользователь2"
-				],
-				"firstText": "dsasddsd",
-				"lastText": "asdadssd",
-				"buttons": [
-					{
-						"text": "Не коммерческое"
-					},
-					{
-						"text": "Админ",
-						"url": "https://t.me/admin"
-					}
-				]
-			},
-			{
-				"groupName": "ads",
-				"ignoredUsers": [],
-				"firstText": null,
-				"lastText": null,
-				"buttons": [
-					{
-						"text": "Не коммерческое"
-					},
-					{
-						"text": "Админ",
-						"url": "https://t.me/admin"
-					}
-				]
-			},
-			{
-				"groupName": "asd",
-				"ignoredUsers": [],
-				"lastText": null,
-				"firstText": null,
-				"buttons": []
-			}
-		],
-		"haveSub": true,
-		"subDays": 30,
-		"selectedGroup": "uniquetemplatess_bot"
-	},
-	{
 		"id": 1452185211,
 		"nick": "skupka_125",
 		"name": "Skupka125",
@@ -58,14 +7,5 @@
 		"groups": [],
 		"haveSub": true,
 		"subDays": 30
-	},
-	{
-		"id": 6163683527,
-		"nick": "Hesoyamjik3",
-		"name": "Heso",
-		"heAcceptedAgreement": false,
-		"groups": [],
-		"haveSub": false,
-		"subDays": null
 	}
 ]

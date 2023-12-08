@@ -1,12 +1,8 @@
-[
+[ 
     {
-        "command": "/addigonredusers", 
-        "description": "Добавить игнорированных пользователей"
-    },    
-    {
-        "command": "/addgrouptext", 
-        "description": "Добавить конкретный текст для группы"
-    },    
+        "command": "/start", 
+        "description": "Запуск"
+    },
     {
         "command": "/stop", 
         "description": "Остоновить"

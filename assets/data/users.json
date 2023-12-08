@@ -1,18 +1,27 @@
 [
-	{
-		"id": 1454688178,
-		"nick": "HesoyamiJs",
-		"name": "Heso",
-		"heAcceptedAgreement": false,
-		"groups": [
-			{
-				"groupName": "uniquetemplatess_bot",
-				"ignoredUsers": [],
-				"firstText": "Привет мир\n333",
-				"buttons": []
-			}
-		],
-		"haveSub": true,
-		"subDays": 30
-	}
+  {
+    "id": 1454688178,
+    "nick": "HesoyamiJs",
+    "name": "Heso",
+    "heAcceptedAgreement": false,
+    "groups": [
+      {
+        "groupName": "uniquetemplatess_bot",
+        "ignoredUsers": [],
+        "firstText": "Привет мир\n333",
+        "buttons": []
+      }
+    ],
+    "haveSub": true,
+    "subDays": 30
+  },
+  {
+    "id": 1452185211,
+    "nick": "skupka_125",
+    "name": "Skupka125",
+    "heAcceptedAgreement": true,
+    "groups": [],
+    "haveSub": true,
+    "subDays": 30
+  }
 ]
